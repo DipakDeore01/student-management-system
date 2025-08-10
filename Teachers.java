@@ -1,7 +1,3 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 class Teachers {
@@ -36,24 +32,6 @@ class Teachers {
             System.out.println("Teachers, Login Successful");
         }else {
             System.out.println("Enter valid Username, Password.");
-        }
-    }
-
-    ArrayList<String> students= new ArrayList<>();
-
-    public void add(String id, String name, String course, String year) {
-        String studentData = id + "," + name + "," + course + "," + year;
-
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("students.txt", true));
-            writer.write(studentData);
-            writer.newLine();
-            writer.close();
-
-            System.out.println("Student data added successfully!");
-        } catch (IOException e) {
-            System.out.println("An error occurred while writing to the file.");
-            e.printStackTrace();
         }
     }
 

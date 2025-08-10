@@ -33,7 +33,7 @@ class Admin{
         System.out.print("Password: ");
         String pass= sc.nextLine();
         if (getUsername().equals(user)&& getPassword().equals(pass)){
-            System.out.println("Teachers, Login Successful");
+            System.out.println("Admin, Login Successful");
         }else {
             System.out.println("Enter valid Username, Password.");
         }
@@ -55,6 +55,10 @@ class Admin{
             System.out.println("An error occurred while writing to the file.");
             e.printStackTrace();
         }
+    }
+
+    public void viewstd(){
+
     }
 
 }
