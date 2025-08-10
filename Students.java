@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Student {
+class Student {
     private String Username = "Student";
     private String Password = "1234";
 
