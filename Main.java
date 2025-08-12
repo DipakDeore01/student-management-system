@@ -1,10 +1,14 @@
+import Services.AdminService;
+import Services.TeachersService;
+import Services.StudentsService;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Admin admin= new Admin();
-        Teachers teachers = new Teachers();
-        Student student= new Student();
+        AdminService adminService= new AdminService();
+        TeachersService teachersService = new TeachersService();
+        StudentsService studentsService= new StudentsService();
         Scanner sc= new Scanner(System.in);
         System.out.println("+---------------------------------------+\n" +
                          "|    Student Management System (CLI)    |\n" +
@@ -15,13 +19,13 @@ public class Main {
         byte choice= sc.nextByte();
         switch (choice){
             case 1:
-                admin.login();
+                adminService.login();
                 break;
             case 2:
-                teachers.login();
+                teachersService.login();
                 break;
             case 3:
-                student.login();
+                studentsService.login();
                 break;
             case 0:
                 break;
