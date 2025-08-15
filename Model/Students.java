@@ -2,10 +2,9 @@ package Model;
 
 public class Students {
     private String name;
-    private int roll_no;
     private String course;
-    private String year;
-    private long phoneno;
+    private int year;
+    private long phone;
     private String email;
     private String password;
 
@@ -17,14 +16,6 @@ public class Students {
         this.name = name;
     }
 
-    public int getRoll_no() {
-        return roll_no;
-    }
-
-    public void setRoll_no(int roll_no) {
-        this.roll_no = roll_no;
-    }
-
     public String getCourse() {
         return course;
     }
@@ -33,20 +24,20 @@ public class Students {
         this.course = course;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public long getPhoneno() {
-        return phoneno;
+    public long getPhone() {
+        return phone;
     }
 
-    public void setPhoneno(long phoneno) {
-        this.phoneno = phoneno;
+    public void setPhone(long phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -65,3 +56,4 @@ public class Students {
         this.password = password;
     }
 }
+

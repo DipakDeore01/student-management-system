@@ -14,12 +14,15 @@ public class Main {
                          "|    Student Management System (CLI)    |\n" +
                          "+---------------------------------------+\n");
 
-        System.out.println("[1] Admin Login \n[2] Teachers Login \n[3] Student Login \n[0] Exit\n");
+        System.out.println("[1] Admin Login \n" +
+                "[2] Teachers Login \n" +
+                "[3] Student Login \n" +
+                "[0] Exit");
         System.out.print(">> Enter your choice: ");
         byte choice= sc.nextByte();
         switch (choice){
             case 1:
-                adminService.login();
+                adminService.start();
                 break;
             case 2:
                 teachersService.login();
