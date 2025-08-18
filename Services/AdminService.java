@@ -19,7 +19,7 @@ public class AdminService {
     public void start() {
         // First check if already logged in
         if (isLoggedIn()) {
-            System.out.println("Welcome back, Admin!");
+            System.out.println("\nWelcome back, Admin!");
             showDashboard();
         } else {
             login();
@@ -47,7 +47,7 @@ public class AdminService {
             String pass = sc.nextLine();
             if (admin.getEmail().equals(user) && admin.getPassword().equals(pass)) {
                 saveLoginSession();
-                System.out.println("Admin, Login Successful\n");
+                System.out.println("\nAdmin, Login Successful");
                 showDashboard();
                 break;
             } else {
@@ -78,8 +78,8 @@ public class AdminService {
 
     private void showDashboard() {
         while (true) {
-            System.out.println("+-------- Admin Dashboard --------+\n" +
-                    "[1] Add Student\n" +
+            System.out.println("\n+-------- Admin Dashboard --------+\n" +
+                    "\n[1] Add Student\n" +
                     "[2] View Students\n" +
                     "[3] Update Student\n" +
                     "[4] Delete Student\n" +
@@ -93,6 +93,7 @@ public class AdminService {
 
             switch (choice) {
                 case 1 -> addStudents();
+                case 2 -> viewStudents();
                 case 8 -> {
                     clearLoginSession();
                     System.out.println("Logged out successfully.");
@@ -144,6 +145,23 @@ public class AdminService {
             return "Student Added Successfully";
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void viewStudents(){
+        try {
+            File file = new File("src/Data/students.txt");
+            Scanner Reader= new Scanner(file);
+            System.out.println();
+            while (Reader.hasNextLine()) {
+                String data = Reader.nextLine();
+                System.out.println(data);
+            }
+            Reader.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("An error has occurred.");
+            e.printStackTrace();
         }
     }
 }
