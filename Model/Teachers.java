@@ -1,30 +1,20 @@
 package Model;
 
 public class Teachers {
-    private int id;
+    private String id;
     private String name;
-    private String email;
-    private long phoneno;
+    private String qualifications;
     private String department;
     private String subject;
-    private String Assigned;
-    private String qualifications;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    private long phoneno;
+    private String email;
     private String password;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -36,20 +26,12 @@ public class Teachers {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getQualifications() {
+        return qualifications;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public long getPhoneno() {
-        return phoneno;
-    }
-
-    public void setPhoneno(long phoneno) {
-        this.phoneno = phoneno;
+    public void setQualifications(String qualifications) {
+        this.qualifications = qualifications;
     }
 
     public String getDepartment() {
@@ -68,19 +50,27 @@ public class Teachers {
         this.subject = subject;
     }
 
-    public String getAssigned() {
-        return Assigned;
+    public long getPhoneno() {
+        return phoneno;
     }
 
-    public void setAssigned(String assigned) {
-        Assigned = assigned;
+    public void setPhoneno(long phoneno) {
+        this.phoneno = phoneno;
     }
 
-    public String getQualifications() {
-        return qualifications;
+    public String getEmail() {
+        return email;
     }
 
-    public void setQualifications(String qualifications) {
-        this.qualifications = qualifications;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

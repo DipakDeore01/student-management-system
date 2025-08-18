@@ -2,10 +2,9 @@ package Services;
 
 import Model.Admin;
 import Model.Students;
+import Model.Teachers;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class AdminService {
@@ -13,6 +12,7 @@ public class AdminService {
     Scanner sc = new Scanner(System.in);
     Admin admin = new Admin();
     Students students = new Students();
+    Teachers teachers = new Teachers();
 
     private static final String SESSION_FILE = "src/Data/session.txt";
 
@@ -94,6 +94,8 @@ public class AdminService {
             switch (choice) {
                 case 1 -> addStudents();
                 case 2 -> viewStudents();
+                case 5 -> addTeacher();
+                case 6 -> viewTeachers();
                 case 8 -> {
                     clearLoginSession();
                     System.out.println("Logged out successfully.");
@@ -103,8 +105,6 @@ public class AdminService {
             }
         }
     }
-
-    List<Students> list = new ArrayList<>();
 
     public String addStudents() {
         System.out.println("+-------- Student Details --------+");
@@ -117,11 +117,11 @@ public class AdminService {
 
         System.out.print("Year: ");
         students.setYear(sc.nextInt());
-        sc.nextLine(); // consume leftover newline
+        sc.nextLine();
 
         System.out.print("Phone: ");
         students.setPhone(sc.nextLong());
-        sc.nextLine(); // consume leftover newline
+        sc.nextLine();
 
         System.out.print("Email: ");
         students.setEmail(sc.nextLine());
@@ -134,12 +134,12 @@ public class AdminService {
             if (!dir.exists()) dir.mkdirs();
 
             FileWriter writer = new FileWriter("src/Data/students.txt", true); // append mode
-            writer.write(students.getName() + "," +
+            writer.write("\n"+students.getName() + "," +
                     students.getCourse() + "," +
                     students.getYear() + "," +
                     students.getPhone() + "," +
                     students.getEmail() + "," +
-                    students.getPassword() + "\n");
+                    students.getPassword());
             writer.close();
             System.out.println("Student Added Successfully");
             return "Student Added Successfully";
@@ -151,6 +151,73 @@ public class AdminService {
     public void viewStudents(){
         try {
             File file = new File("src/Data/students.txt");
+            Scanner Reader= new Scanner(file);
+            System.out.println();
+            while (Reader.hasNextLine()) {
+                String data = Reader.nextLine();
+                System.out.println(data);
+            }
+            Reader.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("An error has occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public String addTeacher() {
+        System.out.println("+-------- Student Details --------+");
+
+        System.out.print("Id: ");
+        teachers.setId(sc.nextLine());
+
+        System.out.print("Name: ");
+        teachers.setName(sc.nextLine());
+
+        System.out.print("Qualifications: ");
+        teachers.setQualifications(sc.nextLine());
+
+        System.out.print("Department: ");
+        teachers.setDepartment(sc.nextLine());
+
+        System.out.print("Subject: ");
+        teachers.setSubject(sc.nextLine());
+
+        System.out.print("Phone : ");
+        teachers.setPhoneno(sc.nextLong());
+        sc.nextLine();
+
+        System.out.print("Email: ");
+        teachers.setEmail(sc.nextLine());
+
+        System.out.print("Password: ");
+        teachers.setPassword(sc.nextLine());
+
+        try {
+            File dir = new File("src/Data");
+            if (!dir.exists()) dir.mkdirs();
+
+            FileWriter writer = new FileWriter("src/Data/teachers.txt", true); // append mode
+            writer.write("\n"+teachers.getId()+","+
+                    teachers.getName()+","+
+                    teachers.getQualifications()+","+
+                    teachers.getDepartment()+","+
+                    teachers.getSubject()+","+
+                    teachers.getPhoneno()+","+
+                    teachers.getEmail()+","+
+                    teachers.getPassword()
+            );
+            writer.close();
+            System.out.println("Teacher Added Successfully");
+            return "Teacher Added Successfully";
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void viewTeachers(){
+        try {
+            File file = new File("src/Data/teachers.txt");
             Scanner Reader= new Scanner(file);
             System.out.println();
             while (Reader.hasNextLine()) {
