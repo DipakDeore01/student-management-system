@@ -1,2 +1,3 @@
-Dipak Deore,BCA,2022,9146910000,dipak@mail.com,123456
-Suraj Ingale,BCA,2022,7845123694,suraj@mail.com,123456
+Dipak Deore,MCA,2025,7035000000,dipak@mail.com,123456
+Suraj Ingale,MCA,2025,7851653254,suraj@mail.com,123456
+Ritesh Chavhan,MCA,2025,7963266464,ritesh@mail.com,123456

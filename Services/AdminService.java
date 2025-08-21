@@ -17,7 +17,6 @@ public class AdminService {
     private static final String SESSION_FILE = "src/Data/session.txt";
 
     public void start() {
-        // First check if already logged in
         if (isLoggedIn()) {
             System.out.println("\nWelcome back, Admin!");
             showDashboard();
@@ -85,8 +84,7 @@ public class AdminService {
                     "[4] Delete Student\n" +
                     "[5] Add Teacher\n" +
                     "[6] View Teachers\n" +
-                    "[7] Generate Reports\n" +
-                    "[8] Logout");
+                    "[7] Logout");
             System.out.print(">> Enter your choice: ");
             byte choice = sc.nextByte();
             sc.nextLine(); // consume newline
@@ -94,9 +92,11 @@ public class AdminService {
             switch (choice) {
                 case 1 -> addStudents();
                 case 2 -> viewStudents();
+                case 3 -> updateStudent();
+                case 4 -> deleteStudent();
                 case 5 -> addTeacher();
                 case 6 -> viewTeachers();
-                case 8 -> {
+                case 7 -> {
                     clearLoginSession();
                     System.out.println("Logged out successfully.");
                     return;
@@ -134,7 +134,7 @@ public class AdminService {
             if (!dir.exists()) dir.mkdirs();
 
             FileWriter writer = new FileWriter("src/Data/students.txt", true); // append mode
-            writer.write("\n"+students.getName() + "," +
+            writer.write("\n" + students.getName() + "," +
                     students.getCourse() + "," +
                     students.getYear() + "," +
                     students.getPhone() + "," +
@@ -148,25 +148,120 @@ public class AdminService {
         }
     }
 
-    public void viewStudents(){
+    public void viewStudents() {
         try {
             File file = new File("src/Data/students.txt");
-            Scanner Reader= new Scanner(file);
+            Scanner Reader = new Scanner(file);
             System.out.println();
             while (Reader.hasNextLine()) {
                 String data = Reader.nextLine();
                 System.out.println(data);
             }
             Reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("No students found yet.");
         }
-        catch (FileNotFoundException e) {
-            System.out.println("An error has occurred.");
+    }
+
+    public void updateStudent() {
+        System.out.print("Enter Email of student to update: ");
+        String emailToUpdate = sc.nextLine();
+
+        File file = new File("src/Data/students.txt");
+        File tempFile = new File("src/Data/students_temp.txt");
+
+        boolean updated = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+
+                String[] data = line.split(",");
+                if (data.length >= 6 && data[4].equalsIgnoreCase(emailToUpdate)) {
+                    System.out.println("Updating Student: " + data[0]);
+
+                    System.out.print("New Name: ");
+                    data[0] = sc.nextLine();
+
+                    System.out.print("New Course: ");
+                    data[1] = sc.nextLine();
+
+                    System.out.print("New Year: ");
+                    data[2] = sc.nextLine();
+
+                    System.out.print("New Phone: ");
+                    data[3] = sc.nextLine();
+
+                    System.out.print("New Email: ");
+                    data[4] = sc.nextLine();
+
+                    System.out.print("New Password: ");
+                    data[5] = sc.nextLine();
+
+                    line = String.join(",", data);
+                    updated = true;
+                }
+                writer.write(line + System.lineSeparator());
+            }
+        } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if (file.delete()) {
+            tempFile.renameTo(file);
+        }
+
+        if (updated) {
+            System.out.println("Student Updated Successfully!");
+        } else {
+            System.out.println("Student not found with Email: " + emailToUpdate);
+        }
+    }
+
+    public void deleteStudent() {
+        System.out.print("Enter Email of student to delete: ");
+        String emailToDelete = sc.nextLine();
+
+        File file = new File("src/Data/students.txt");
+        File tempFile = new File("src/Data/students_temp.txt");
+
+        boolean deleted = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+
+                String[] data = line.split(",");
+                if (data.length >= 6 && data[4].equalsIgnoreCase(emailToDelete)) {
+                    System.out.println("Deleting Student: " + data[0]);
+                    deleted = true;
+                    continue; // skip writing this student
+                }
+                writer.write(line + System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (file.delete()) {
+            tempFile.renameTo(file);
+        }
+
+        if (deleted) {
+            System.out.println("Student Deleted Successfully!");
+        } else {
+            System.out.println("Student not found with Email: " + emailToDelete);
         }
     }
 
     public String addTeacher() {
-        System.out.println("+-------- Student Details --------+");
+        System.out.println("+-------- Teacher Details --------+");
 
         System.out.print("Id: ");
         teachers.setId(sc.nextLine());
@@ -198,13 +293,13 @@ public class AdminService {
             if (!dir.exists()) dir.mkdirs();
 
             FileWriter writer = new FileWriter("src/Data/teachers.txt", true); // append mode
-            writer.write("\n"+teachers.getId()+","+
-                    teachers.getName()+","+
-                    teachers.getQualifications()+","+
-                    teachers.getDepartment()+","+
-                    teachers.getSubject()+","+
-                    teachers.getPhoneno()+","+
-                    teachers.getEmail()+","+
+            writer.write("\n" + teachers.getId() + "," +
+                    teachers.getName() + "," +
+                    teachers.getQualifications() + "," +
+                    teachers.getDepartment() + "," +
+                    teachers.getSubject() + "," +
+                    teachers.getPhoneno() + "," +
+                    teachers.getEmail() + "," +
                     teachers.getPassword()
             );
             writer.close();
@@ -215,20 +310,18 @@ public class AdminService {
         }
     }
 
-    public void viewTeachers(){
+    public void viewTeachers() {
         try {
             File file = new File("src/Data/teachers.txt");
-            Scanner Reader= new Scanner(file);
+            Scanner Reader = new Scanner(file);
             System.out.println();
             while (Reader.hasNextLine()) {
                 String data = Reader.nextLine();
                 System.out.println(data);
             }
             Reader.close();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("An error has occurred.");
-            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            System.out.println("No teachers found yet.");
         }
     }
 }
