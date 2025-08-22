@@ -39,20 +39,19 @@ public class AdminService {
     }
 
     public void login() {
-        while (true) {
             System.out.print("Email: ");
             String user = sc.nextLine();
+
             System.out.print("Password: ");
             String pass = sc.nextLine();
+
             if (admin.getEmail().equals(user) && admin.getPassword().equals(pass)) {
                 saveLoginSession();
                 System.out.println("\nAdmin, Login Successful");
                 showDashboard();
-                break;
             } else {
                 System.out.println("Enter valid Username, Password.");
             }
-        }
     }
 
     private void saveLoginSession() {
@@ -87,7 +86,7 @@ public class AdminService {
                     "[7] Logout");
             System.out.print(">> Enter your choice: ");
             byte choice = sc.nextByte();
-            sc.nextLine(); // consume newline
+            sc.nextLine();
 
             switch (choice) {
                 case 1 -> addStudents();
