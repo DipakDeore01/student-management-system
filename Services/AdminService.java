@@ -240,7 +240,7 @@ public class AdminService {
                 if (data.length >= 6 && data[4].equalsIgnoreCase(emailToDelete)) {
                     System.out.println("Deleting Student: " + data[0]);
                     deleted = true;
-                    continue; // skip writing this student
+                    continue;
                 }
                 writer.write(line + System.lineSeparator());
             }

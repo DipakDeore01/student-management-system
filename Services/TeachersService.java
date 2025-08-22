@@ -33,8 +33,7 @@ public class TeachersService {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.trim().isEmpty()) continue;
-
-                // File format: Id,Name,Qualifications,Department,Subject,Phone,Email,Password
+                
                 String[] data = line.split(",");
                 if (data.length >= 8) {
                     String fileEmail = data[6].trim();
@@ -125,7 +124,7 @@ public class TeachersService {
             String line = br.readLine();
             if (line != null) {
                 String[] data = line.split(",");
-                return data[0]; // return teacher name
+                return data[0];
             }
         } catch (IOException e) {
             return "Teacher";

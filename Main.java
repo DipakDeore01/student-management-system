@@ -27,7 +27,7 @@ public class Main {
                 choice = sc.nextByte();
             } catch (Exception e) {
                 System.out.println("Invalid input! Please enter a number.");
-                sc.nextLine(); // clear invalid input
+                sc.nextLine();
                 continue;
             }
 
