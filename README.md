@@ -1,54 +1,19 @@
 # Student Management System
 
+This is a terminal-based Student Management System built using Java and File Handling.
 
+---
 
-A terminal-based Student Management System built in Java using File Handling.  
+## Login Details
 
-It supports Admin, Teacher, and Student roles with separate login and functionalities.
+### Admin Login
+- Username: admin@mail.com
+- Password: 123456    
 
+---
 
-
-
-
--- Admin Login
-
-
-
-Use the following credentials to log in as \*\*Admin\*\*:
-
-
-
-\- Username: admin@mail.com
-
-\- Password: 123456  
-
-
-
-
-
--- How to Run
-
-
-
-1\. Clone or download the project.  
-
-2\. Open the project in \*\*IntelliJ IDEA\*\* or \*\*VS Code\*\*.  
-
-3\. Make sure data files exist inside `src/Data/`:
-
-&nbsp;  - students.txt
-
-&nbsp;  - teachers.txt`
-
-&nbsp;  - attendance.txt`
-
-4\. Run the `Main.java` file.  
-
-5\. Login using the credentials given above.  
-
-
-
-
-
-
-
+## How to Run
+1. Open the project in IntelliJ IDEA or any Java IDE.  
+2. Locate and run the `Main.java` file.  
+3. Enter the login credentials (Admin, Teacher, or Student).  
+4. Start using the system.  
