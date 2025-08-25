@@ -1,2 +1,0 @@
-sur123,Suraj Ingale,MCA,Computer Science,Web Development,7894561230,suraj@mail.com,123456
-dip120,Dipak Deore,MCA,Computer Science,Core JAVA,9146910000,dipak@mail.com,123456

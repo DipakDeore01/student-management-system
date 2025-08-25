@@ -1,3 +1,0 @@
-Dipak Deore,MCA,2025,7035000000,dipak@mail.com,123456
-Suraj Ingale,MCA,2025,7851653254,suraj@mail.com,123456
-Ritesh Chavhan,MCA,2025,7963266464,ritesh@mail.com,123456
