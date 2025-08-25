@@ -105,8 +105,45 @@ public class AdminService {
         }
     }
 
+    private int generateRollNumber() {
+        int lastRollNo = 100;
+
+        File file = new File("src/Data/students.txt");
+        if (!file.exists()) {
+            return lastRollNo + 1;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            String lastLine = null;
+
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    lastLine = line;
+                }
+            }
+
+            if (lastLine != null) {
+                String[] data = lastLine.split(",");
+                if (data.length >= 1) {
+                    lastRollNo = Integer.parseInt(data[0]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return lastRollNo + 1;
+    }
+
     public String addStudents() {
         System.out.println("+-------- Student Details --------+");
+
+        int rollNo = generateRollNumber();
+
+        System.out.println("Generated Roll No: " + rollNo);
+
+        students.setRollNo(rollNo);
 
         System.out.print("Name: ");
         students.setName(sc.nextLine());
@@ -133,19 +170,21 @@ public class AdminService {
             if (!dir.exists()) dir.mkdirs();
 
             FileWriter writer = new FileWriter("src/Data/students.txt", true); // append mode
-            writer.write("\n" + students.getName() + "," +
+            writer.write("\n" + students.getRollNo() + "," +
+                    students.getName() + "," +
                     students.getCourse() + "," +
                     students.getYear() + "," +
                     students.getPhone() + "," +
                     students.getEmail() + "," +
                     students.getPassword());
             writer.close();
-            System.out.println("Student Added Successfully");
+            System.out.println("Student Added Successfully with Roll No: " + rollNo);
             return "Student Added Successfully";
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public void viewStudents() {
         try {
