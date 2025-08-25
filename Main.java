@@ -33,8 +33,8 @@ public class Main {
 
             switch (choice) {
                 case 1 -> adminService.start();
-                case 2 -> teachersService.login();
-                case 3 -> studentsService.login();
+                case 2 -> teachersService.start();
+                case 3 -> studentsService.start();
                 case 0 -> {
                     System.out.println("Exiting System... Goodbye!");
                     sc.close();
