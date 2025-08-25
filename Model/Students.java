@@ -1,12 +1,21 @@
 package Model;
 
 public class Students {
+    private int rollno;
     private String name;
     private String course;
     private int year;
     private long phone;
     private String email;
     private String password;
+
+    public int getRollNo() {
+        return rollno;
+    }
+
+    public void setRollNo(int rollno) {
+        this.rollno = rollno;
+    }
 
     public String getName() {
         return name;
